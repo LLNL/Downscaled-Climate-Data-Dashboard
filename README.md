@@ -1,5 +1,3 @@
-LLNL CODE - 850907
-
 This Downscaled Climate Data Dashboard provides a central location for viewing downscaled climate model data and observations. It runs using Dash by Plotly. 
 
 Getting Started
@@ -18,4 +16,6 @@ Run the code,
 python fullApp.py
 ```
 
-
+Release
+----------------
+LLNL CODE - 850907
