@@ -1,0 +1,59 @@
+body {
+    margin:100;
+    font-family: Arial, sans-serif; 
+    background-color: #ffffff
+}
+
+.header {
+    background-color: #2c3e53; 
+    color: #fff; 
+    padding: 90px; 
+    text-align: center; 
+}
+
+.header h1 {
+    margin: 0; 
+    font-size: 60px; 
+    font-weight: bold; 
+}
+
+.navbar {
+    overflow:hidden;
+    background-color: #333; 
+}
+.chart-container { 
+    display: flex; 
+    justify-content: space-between;
+    align-items: center; 
+    margin: 20px;
+}
+.optionBar { 
+    background-color:#ededed;
+    border-style: double;
+    border-color:#2c3e53;
+}
+.summaryStats { 
+    background-color:#f9fae1; 
+    border-style: double; 
+    border-color: #2c3e53
+}
+
+.DataTable.th.rotate {
+    /* https://css-tricks.com/rotated-table-column-headers/ */
+    
+    height: 140px; 
+    white-space: nowrap;
+}
+
+.DataTable.th.rotate > div {
+    transform: 
+        translate(25px, 51px), 
+        rotate(315deg); 
+    width: 30px; 
+}
+
+.DataTable.th.rotate > div > span {
+    border-bottom: 1px solid #ccc;
+    padding: 5x 10px;
+}
+
