@@ -267,4 +267,3 @@ dependencies:
     - websocket-client==1.5.2
     - werkzeug==2.2.3
     - xesmf==0.7.1
-prefix: /home/goodnight1/miniconda3/envs/dashboard_env
