@@ -15,6 +15,7 @@ Run the code,
 ```
 python fullApp.py
 ```
+Go to http://127.0.0.1:8050/ 
 
 Release
 ----------------
