@@ -1037,4 +1037,4 @@ def show_stats(click, dm, do, variable, method1, model1, member1, method2, model
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True, port = 8069, use_reloader=False)
+    app.run_server(debug=True, port = 8050, use_reloader=False)
