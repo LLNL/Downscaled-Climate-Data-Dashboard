@@ -60,9 +60,13 @@ nca_mask    = regionmask.from_geopandas(regional_df, names = "NAME", name = "NCA
 state_mask  = regionmask.from_geopandas(states_df, names = "STUSPS", name = "States")
 
 # Continental US mask
-us = gpd.read_file(states_file)
-us_mask = regionmask.from_geopandas(us, names = "NAME", name = "NCA4 regions")
+us = gpd.read_file('./shp/cb_2018_us_nation_20m.shp')
+us_mask = regionmask.from_geopandas(us, names = "NAME", name = "United States")
 region_dict = {'NCA4 Region': nca_mask, "States": state_mask, 'United States': us_mask}
+
+
+region_dict = {'NCA4 Region': nca_mask, "States": state_mask, 'United States': us_mask}
+
 
 from bs4 import BeautifulSoup
 import requests
@@ -355,11 +359,9 @@ trace_dict = {}
 for mask in region_dict.values():
     data = getData(fname, 'annual', mask, qvar = None)
     for region_name in data.region.names.data:
-        #print(region_name)
         region_ind   = np.where(data.region.names.data == region_name)[0] # index of the subregion 
         subData      = data.isel(region = region_ind).squeeze().dropna(dim = 'lat', how = 'all').dropna(dim = 'lon', how = 'all')
         trace_dict[region_name] = scatterMap(subData)
-
 import matplotlib as ml
 
 from matplotlib import cm
@@ -849,6 +851,7 @@ for component in list(comp_dictionary.keys()):
     variable = comp_dictionary[component][3]
     model    = comp_dictionary[component][4]
     member   = comp_dictionary[component][5]
+
     @app.callback(Output(component_id = component, component_property='figure'),
                   # Output(component_id = 'graphGen', component_property='value'),
                   State(component_id  = variable, component_property = 'value'),
