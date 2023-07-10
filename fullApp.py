@@ -1008,18 +1008,19 @@ def getVal_df(df, variable, model):
 def show_stats(click, dm, do, variable, method1, model1, member1, method2, model2, member2, region): 
     ## use preloaded data if available
 
-    if (method1 == 'loca2') & (method2 == 'loca2'):
-        if (model2 == 'PRISM'):
-            if (member1 == 'r1i1p1f1') & (member2 == 'obs'):
-                if region in np.unique([i[0] for i in list(df_dict.keys())]):
-                    val_rmsc = getVal_df(df_dict[(region, 'rmsc')], variable, model1)
-                    val_rms = getVal_df(df_dict[(region, 'rms')], variable, model1)
-                    val_bias = getVal_df(df_dict[(region, 'bias')], variable, model1)
-                    val_mae = getVal_df(df_dict[(region, 'mae')], variable, model1)
-                    val_corr = getVal_df(df_dict[(region, 'corr')], variable, model1)
-                    
-                    return 'RMSC: {:.4f}'.format(val_rmsc), 'RMS: {:.4f}'.format(val_rms), 'MAE: {:.4f}'.format(val_mae), 'Bias: {:.4f}'.format(val_bias), 'Correlation: {:.4f}'.format(val_corr)
-    ## processing data so that it can be passed to stats functions
+    #if (method1 == 'loca2') & (method2 == 'loca2'):
+    #    if (model2 == 'PRISM'):
+    #        if (member1 == 'r1i1p1f1') & (member2 == 'obs'):
+    #            if region in np.unique([i[0] for i in list(df_dict.keys())]):
+    #                val_rmsc = getVal_df(df_dict[(region, 'rmsc')], variable, model1)
+    #                val_rms = getVal_df(df_dict[(region, 'rms')], variable, model1)
+    #                val_bias = getVal_df(df_dict[(region, 'bias')], variable, model1)
+    #                val_mae = getVal_df(df_dict[(region, 'mae')], variable, model1)
+    #                val_corr = getVal_df(df_dict[(region, 'corr')], variable, model1)
+    #                
+    #                return 'RMSC: {:.4f}'.format(val_rmsc), 'RMS: {:.4f}'.format(val_rms), 'MAE: {:.4f}'.format(val_mae), 'Bias: {:.4f}'.format(val_bias), 'Correlation: {:.4f}'.format(val_corr)
+    
+## processing data so that it can be passed to stats functions
     
     dm = xr.DataArray.from_dict(dm).to_dataset()
     do = xr.DataArray.from_dict(do).to_dataset()
