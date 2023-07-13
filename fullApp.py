@@ -429,7 +429,7 @@ dcolorbar_dict = {}
 zmin_dict      = {}
 zmax_dict      = {}
 
-for vari in method_vars['loca2']:
+for vari in method_vars['star']: ## accounting for new STAR variable
     if ('_ge_' in vari):
         colorbar_dict[vari]  = txt_cmap
         dcolorbar_dict[vari] = dt_cmap
@@ -630,7 +630,7 @@ def updateVariables(method1, method2):
               Input(component_id  = 'dropVar',      component_property = 'value'))
 def showSeason(variable): 
     if 'season' in variable: 
-        return {'display':'block', 'margin-top':60}
+        return {'display':'block', 'marginTop':60}
     else:
         return {'display':'none'}
 @app.callback(Output(component_id = 'dropModel1',  component_property = 'options'), 
@@ -765,7 +765,7 @@ for component in list(comp_dictionary.keys()):
                   Input(component_id  = 'regionSelect',  component_property = 'value'), ## changing the type of region (NCA4/States()
                   Input(component_id  = 'seasonSelect',  component_property = 'value'), 
                   Input(component_id  = variable,        component_property = 'value'), 
-                  State(component_id  = slider,          component_property = 'value'), 
+                  Input(component_id  = slider,          component_property = 'value'), 
 
                   State(component_id  = storedC,  component_property = 'data'), 
                   #Input(component_id  = 'graphGen',        component_property = 'n_clicks'),
