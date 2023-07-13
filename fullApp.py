@@ -72,6 +72,10 @@ from bs4 import BeautifulSoup
 import requests
 
 def listFD(url, ext=''):
+    """
+    list subdirectories of given url data host
+    """
+
     page = requests.get(url).text
     soup = BeautifulSoup(page, 'html.parser')
     return [url + '/' + node.get('href') for node in soup.find_all('a') if node.get('href').endswith(ext)]
@@ -190,8 +194,11 @@ def getLatLonNames(d):
 
     
 def getData(fname, seas, mask, qvar = None):
-    import time
-    #print(fname)
+    """
+	download data from NERSC and return
+	return: xArray dataArray
+    """ 
+ 
     if 'quantile' in fname: 
         decode_times = False
     else:
@@ -242,6 +249,10 @@ from plotly.graph_objects import Scatter
 from plotly.graph_objs.scatter import Line
 
 def make_scatter(x,y):
+    """ 
+    return Plotly.Scatter object of given cartographic boundary
+    """ 
+
     return Scatter(
         x=x,
         y=y,
@@ -252,7 +263,7 @@ def make_scatter(x,y):
         hoverinfo = 'skip'
     )
 
-# Functions converting coastline/country polygons to lon/lat traces
+# Functions converting coastline/country polygons to lon/lat traces. https://plotly.com/python/v3/ipython-notebooks/basemap-maps/
 def polygons_to_traces(m, poly_paths, N_poly):
     ''' 
     pos arg 1. (poly_paths): paths to polygons
@@ -296,6 +307,10 @@ def get_country_traces(m):
     return polygons_to_traces(m, poly_paths, N_poly)
 
 def scatterMap(dataArray):
+    """
+    create Scatter points of cartgraphic boundaries for given data
+    """ 
+
     offset = 0 
 
     min_lat = min(dataArray.lat.data)-1
@@ -833,6 +848,11 @@ comp_dictionary = {'contourOne':['previous_click-store-contour1', 'dataArrStoreO
 
 
 def fullMaxMin(da1, da2):
+    """
+    inputs: two 2D dataArray
+    returns: min/max value contained within either dataArray. Used to correct figure colorbars
+    """ 
+
     stdev = np.nanstd(data)
     
     mn = np.nanmin([np.nanmin(da1), np.nanmin(da2)])
@@ -895,7 +915,7 @@ for component in list(comp_dictionary.keys()):
         cmap_dict = colorbar_dict  # using predefined colormaps for average value variables
         colormap = cmap_dict[variable]
         
-        z_min, z_max = fullMaxMin(dataArr, sisterArr)
+        z_min, z_max = fullMaxMin(dataArr, sisterArr) # returns the same zmin/zmax values during each function call
 
 
         return go.Figure(data = [go.Heatmap(
@@ -926,7 +946,6 @@ for component in list(comp_dictionary.keys()):
               State(component_id  = 'previous_click-store-contour1', component_property = 'data'), prevent_initial_call = True)
 
 def differenceUpdate(click, dataDictOne, dataDictTwo, diffType, variable, method1, model1, member1, method2, model2, member2, subregion): 
-    #try:
     if subregion == 'usmap':
         subregion = 'United States'
 
