@@ -1,8 +1,0 @@
-.app-header {
-    height: 80px; 
-    border-bottom: thin lightgrey solid; 
-}
-.app-header .app-header--title { 
-    font-size: 80px; 
-    padding-left: 5px;
-}
